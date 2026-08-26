@@ -52,14 +52,14 @@ def get_pet_labels(image_dir):
         if filename[0] != ".":
             # Create temporary label variable 
             pet_label = ""
-            # Convert filename to list of lower case words
-            word_list = filename.lower().split("_")
+            # Convert filename to list of words
+            word_list = filename.split("_")
             # Process each word in the word list
             for word in word_list:
-                # Check if the word is alphabetic
+                # Check if the word is alphabetic to avoid including numbers or file extensions in the pet label
                 if word.isalpha():
-                    # add word to pet label
-                    pet_label += word
+                    # conver word to lower case and add word to pet label
+                    pet_label += word.lower()
                     # add space after each word to separate them
                     pet_label += " "
 
