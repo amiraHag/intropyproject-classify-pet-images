@@ -2,8 +2,8 @@
 # -*- coding: utf-8 -*-
 # */AIPND-revision/intropyproject-classify-pet-images/get_pet_labels.py
 #                                                                             
-# PROGRAMMER: 
-# DATE CREATED:                                  
+# PROGRAMMER: Amira Hagag
+# DATE CREATED: 26 August 2026 18:00                          
 # REVISED DATE: 
 # PURPOSE: Create the function get_pet_labels that creates the pet labels from 
 #          the image's filename. This function inputs: 
@@ -40,6 +40,39 @@ def get_pet_labels(image_dir):
       List. The list contains for following item:
          index 0 = pet image label (string)
     """
+    # Create the results dictionary that will be returned by this function
+    results_dic = dict()
+
+    # Retrive filenames from folder name in the parameter (default = pet_images)
+    filename_list = listdir(image_dir)
+
+    # Iterate through each file in the folder name given  in the parameter image_dir
+    for filename in filename_list:
+        # Skip file that that isn't image file like those that starts with .
+        if filename[0] != ".":
+            # Create temporary label variable 
+            pet_label = ""
+            # Convert filename to list of lower case words
+            word_list = filename.lower().split("_")
+            # Process each word in the word list
+            for word in word_list:
+                # Check if the word is alphabetic
+                if word.isalpha():
+                    # add word to pet label
+                    pet_label += word
+                    # add space after each word to separate them
+                    pet_label += " "
+
+            # Remove start and end whitespace from pet_label
+            pet_label = [pet_label.strip()]
+
+
+            #Check type of pet_label
+            # print(type(pet_label))
+  
+            # Add to the results dictionary
+            results_dic[filename] = pet_label
+
     # Replace None with the results_dic dictionary that you created with this
     # function
-    return None
+    return results_dic
