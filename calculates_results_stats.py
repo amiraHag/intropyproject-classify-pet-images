@@ -101,7 +101,7 @@ def calculates_results_stats(results_dic):
             if results_dic[key][4] == 0:
                 results_stats_dic['n_correct_notdogs'] += 1
 
-    # Number of total images
+    # Total Number of images
     results_stats_dic['n_images'] = len(results_dic)
 
     # Number of non-dog images
