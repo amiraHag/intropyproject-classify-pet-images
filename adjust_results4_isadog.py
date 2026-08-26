@@ -99,6 +99,3 @@ def adjust_results4_isadog(results_dic, dogfile):
             results_dic[key].append(1)  
         else:
             results_dic[key].append(0)
-
-
-        
