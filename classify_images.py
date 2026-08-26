@@ -76,7 +76,7 @@ def classify_images(images_dir, results_dic, model):
         #Get the pet image label from the results dictionary
         pet_label = results_dic[key][0]
 
-        # Compare the pet image label with the classifier label
+        # Compare the pet image label with the classifier label and if there is a match then set the value of truth to 1 otherwise set it to 0  
         if pet_label in classifier_label:
             match = 1
         else:

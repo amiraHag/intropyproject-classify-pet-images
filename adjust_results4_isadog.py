@@ -2,8 +2,8 @@
 # -*- coding: utf-8 -*-
 # */AIPND-revision/intropyproject-classify-pet-images/adjust_results4_isadog.py
 #                                                                             
-# PROGRAMMER: 
-# DATE CREATED:                                 
+# PROGRAMMER: Amira Hagag
+# DATE CREATED: 26 August 2026 20:00                                
 # REVISED DATE: 
 # PURPOSE: Create a function adjust_results4_isadog that adjusts the results 
 #          dictionary to indicate whether or not the pet image label is of-a-dog, 
@@ -66,5 +66,39 @@ def adjust_results4_isadog(results_dic, dogfile):
                maltese) (string - indicates text file's filename)
     Returns:
            None - results_dic is mutable data type so no return needed.
-    """           
-    None
+    """
+    # Creates dognames dictionary            
+    dog_names_dic = dict()
+
+    # Read dog names from file into dictionary
+    with open(dogfile, "r") as fhandle:
+        # Iterate through each line in the dog name file
+        for line in fhandle:
+            # Strip whitespace and convert to lowercase
+            dog_name = line.strip().lower()
+            # Add dog name to dictionary if not already exists
+            if dog_name not in dog_names_dic:
+                # Set the value to 1 if this is a dog name
+                dog_names_dic[dog_name] = 1
+
+    # Iterate through the results dictionary       
+    for key in results_dic:
+        
+        # Get the Pet image label and Classifier label, convert to lowercase for comparison
+        pet_label = results_dic[key][0].lower()
+        classifier_label = results_dic[key][1].lower()
+        
+        # Check if pet label is a dog add 1 if it is a dog, otherwise add 0
+        if pet_label in dog_names_dic:
+            results_dic[key].append(1)  
+        else:
+            results_dic[key].append(0)  
+        
+        # Check if classifier label is a dog add 1 if it is a dog, otherwise add 0
+        if classifier_label in dog_names_dic:
+            results_dic[key].append(1)  
+        else:
+            results_dic[key].append(0)
+
+
+        
